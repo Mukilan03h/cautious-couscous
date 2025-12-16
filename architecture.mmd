@@ -1,0 +1,78 @@
+graph TD
+    User[User] -->|HTTPS| Frontend[Web Frontend (Next.js)]
+    Frontend -->|REST / SSE| Backend[Backend API (FastAPI)]
+
+    subgraph Data_Storage [Data Storage]
+        Postgres[(PostgreSQL)]
+        Vespa[(Vespa Vector DB)]
+        Redis[(Redis Cache/Broker)]
+        MinIO[(MinIO Object Store)]
+    end
+
+    subgraph Background_Workers [Celery Workers]
+        PrimaryWorker[Primary Worker]
+        DocFetching[DocFetching Worker]
+        DocProcessing[DocProcessing Worker]
+        LightWorker[Light Worker]
+        HeavyWorker[Heavy Worker]
+    end
+
+    subgraph Inference [Inference Services]
+        ModelServer[Model Server (Bi/Cross-Encoders)]
+        LLM[External LLM (OpenAI/Anthropic/etc)]
+    end
+
+    subgraph External_Sources [External Data Sources]
+        GoogleDrive[Google Drive]
+        Slack[Slack]
+        Web[Websites]
+        Confluence[Confluence]
+        etc[etc...]
+    end
+
+    %% Backend Interactions
+    Backend -->|Read/Write| Postgres
+    Backend -->|Cache/PubSub| Redis
+    Backend -->|Query/Search| Vespa
+    Backend -->|Chat Generation| LLM
+    Backend -->|Dispatch Tasks| Redis
+
+    %% Worker Interactions
+    Redis -->|Consume Tasks| PrimaryWorker
+    Redis -->|Consume Tasks| DocFetching
+    Redis -->|Consume Tasks| DocProcessing
+    Redis -->|Consume Tasks| LightWorker
+    Redis -->|Consume Tasks| HeavyWorker
+
+    %% DocFetching Flow
+    DocFetching -->|Fetch Data| External_Sources
+    DocFetching -->|Store Batches| MinIO
+    DocFetching -->|Update State| Postgres
+    DocFetching -.->|Spawns Process| IsolatedProcess[Isolated Connector Process]
+
+    %% DocProcessing Flow
+    DocProcessing -->|Read Batches| MinIO
+    DocProcessing -->|Embed Chunks| ModelServer
+    DocProcessing -->|Index Docs| Vespa
+    DocProcessing -->|Update Metadata| Postgres
+    DocProcessing -->|Summarize/Context| LLM
+
+    %% General Worker Interactions
+    PrimaryWorker -->|Coordination| Postgres
+    PrimaryWorker -->|Schedule| Redis
+    LightWorker -->|Permissions Sync| Postgres
+    LightWorker -->|Update ACLs| Vespa
+    HeavyWorker -->|Pruning| Vespa
+    HeavyWorker -->|Pruning| Postgres
+
+    %% Model Server
+    ModelServer -->|Embeddings| DocProcessing
+    ModelServer -->|Reranking| Backend
+
+    %% Styling
+    classDef storage fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef worker fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef external fill:#ddd,stroke:#333,stroke-width:2px;
+    class Postgres,Vespa,Redis,MinIO storage;
+    class PrimaryWorker,DocFetching,DocProcessing,LightWorker,HeavyWorker worker;
+    class GoogleDrive,Slack,Web,Confluence,etc,LLM external;
