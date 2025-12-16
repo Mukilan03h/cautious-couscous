@@ -1,0 +1,28 @@
+{{- if and .Values.ingress.enabled .Values.mcpServer.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "esa.fullname" . }}-ingress-mcp
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: {{ include "esa.fullname" . }}-letsencrypt
+spec:
+  rules:
+    - host: {{ .Values.ingress.api.host }}
+      http:
+        paths:
+          - path: /mcp(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ include "esa.fullname" . }}-mcp-server-service
+                port:
+                  number: {{ .Values.mcpServer.service.servicePort }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.api.host }}
+      secretName: {{ include "esa.fullname" . }}-ingress-mcp-tls
+{{- end }}
+

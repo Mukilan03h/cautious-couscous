@@ -1,0 +1,215 @@
+================================================================================
+                    ONYX PLATFORM - FEATURE COMPARISON
+================================================================================
+
+================================================================================
+FREE OPEN-SOURCE FEATURES (MIT Licensed)
+================================================================================
+
+CORE CHAT & SEARCH
+------------------
+- Natural language chat interface
+- AI-powered document search
+- Multi-turn conversations with context
+- Citation and source references
+- Chat sessions and history
+- Streaming responses
+
+DOCUMENT CONNECTORS
+-------------------
+- Web scraping
+- File upload (PDF, DOCX, TXT, etc.)
+- Google Drive
+- Confluence
+- Slack
+- GitHub
+- GitLab
+- Notion
+- Jira
+- Sharepoint
+- Zendesk
+- Hubspot
+- Salesforce
+- Linear
+- Productboard
+- Slab
+- Guru
+- Bookstack
+- Zulip
+- Discourse
+- Axero
+- MediaWiki
+- Wikipedia
+- S3/R2/GCS storage
+- And 30+ more connectors
+
+LLM PROVIDERS
+-------------
+- OpenAI (GPT-4, GPT-3.5)
+- Anthropic (Claude)
+- Azure OpenAI
+- Google (Gemini)
+- AWS Bedrock
+- Cohere
+- Ollama (self-hosted)
+- vLLM
+- LiteLLM
+- Custom/Local models
+
+PERSONAS (ASSISTANTS)
+---------------------
+- Create custom AI personas
+- System prompt customization
+- Tool/capability configuration
+- Document set assignment
+- Public/private personas
+
+DOCUMENT SETS
+-------------
+- Group documents into collections
+- Assign document sets to personas
+- Filter search by document sets
+
+USER MANAGEMENT
+---------------
+- Basic user authentication
+- OAuth/OIDC integration
+- SAML SSO
+- Google Workspace auth
+- Invite-only mode
+- Anonymous access option
+
+ADMIN FEATURES
+--------------
+- Connector management
+- LLM provider configuration
+- Embedding model selection
+- User management
+- System settings
+- Indexing status monitoring
+
+DEPLOYMENT
+----------
+- Docker/Docker Compose
+- Kubernetes support
+- Self-hosted deployment
+- GPU acceleration support
+
+================================================================================
+ENTERPRISE FEATURES (Paid License Required - OR Custom Implementation)
+================================================================================
+
+ROLE-BASED ACCESS CONTROL (RBAC)
+--------------------------------
+- User groups with permissions
+- Group-based document access
+- Admin/curator/user roles
+- Granular permission controls
+
+ANALYTICS & REPORTING
+---------------------
+- Usage analytics dashboard
+- Query volume tracking
+- User activity metrics
+- Token usage monitoring
+- Export capabilities
+
+QUERY HISTORY & AUDIT
+---------------------
+- Full query history logging
+- Search and filter queries
+- Feedback tracking
+- Compliance/audit trails
+- Export query logs
+
+TOKEN RATE LIMITS
+-----------------
+- Per-user token limits (daily/weekly/monthly)
+- Per-group token limits
+- Global rate limits
+- Usage enforcement
+
+STANDARD ANSWERS
+----------------
+- Pre-defined answers for common questions
+- Keyword matching
+- Regex pattern matching
+- Category organization
+- Bypass LLM for known queries
+
+DOCUMENT-LEVEL PERMISSIONS
+--------------------------
+- Document ACLs (Access Control Lists)
+- Document Set ACLs
+- Persona ACLs
+- Connector-level permissions
+- User/group-based access
+
+CONNECTOR PERMISSION SYNC
+-------------------------
+- Sync permissions from source systems
+- External user mapping
+- Permission inheritance
+- Auto-sync scheduling
+
+MULTI-TENANCY
+-------------
+- Tenant isolation
+- Per-tenant configuration
+- Tenant-level user management
+- Tenant roles and permissions
+- Cross-tenant controls
+
+FEATURE FLAGS
+-------------
+- Feature toggle management
+- Per-tenant feature control
+- User/group targeting
+- Gradual rollouts
+- A/B testing support
+
+EVALUATION & TESTING
+--------------------
+- Answer quality evaluation
+- Test datasets management
+- Evaluation runs
+- Accuracy/relevance scoring
+- Regression testing
+
+WHITE LABELING
+--------------
+- Custom branding
+- Logo customization
+- Theme configuration
+
+ENTERPRISE SSO
+--------------
+- Advanced SAML configuration
+- SCIM user provisioning
+- Directory sync
+
+================================================================================
+CUSTOM PLATFORM (myplatform/) - ALWAYS ENABLED
+================================================================================
+
+Our custom implementation provides ALL enterprise features without requiring
+an ESA enterprise license. These are implemented in:
+
+Backend:  F:\ESA\backend\myplatform\
+Frontend: F:\ESA\web\src\app\myplatform\admin\
+
+APIs Available:
+- /api/admin/groups/           - User group management
+- /api/admin/analytics/        - Usage analytics
+- /api/admin/query-history/    - Query logging
+- /api/admin/token-limits/     - Rate limiting
+- /api/admin/standard-answers/ - Standard answers
+- /api/admin/permissions/      - Document ACLs
+- /api/admin/connector-sync/   - Permission sync
+- /api/admin/tenants/          - Multi-tenancy
+- /api/admin/feature-flags/    - Feature flags
+- /api/admin/evals/            - Evaluations
+
+Admin UI: http://localhost:3000/myplatform/admin
+
+================================================================================

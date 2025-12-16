@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs", "go-bin~=1.25.0", "manygo"]
+build-backend = "hatchling.build"
+
+[project]
+name = "esa-devtools"
+description = "Developer utilities for working on esa.app"
+authors = [{ name = "ESA AI", email = "founders@esa.app" }]
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = [
+  "esa", "cli", "devtools", "tools", "tooling",
+]
+classifiers = [
+    "Programming Language :: Go",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dynamic = ["version"]
+
+
+[project.urls]
+Repository = "https://github.com/esa-dot-app/esa"
+
+[tool.hatch.build]
+include = ["go.mod", "go.sum", "main.go", "**/*.go"]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+root = "../.."
+tag_regex = "^ods/v(?P<version>[vV]?\\d+(?:\\.\\d+){0,2}[^\\+]*)(?:\\+.*)?$"
+
+[tool.hatch.build.targets.wheel.hooks.custom]
+path = "hatch_build.py"
+binary_name = "ods"
+
+[tool.uv]
+managed = false

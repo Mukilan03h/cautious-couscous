@@ -1,0 +1,1 @@
+# MyPlatform Slack Bot Module

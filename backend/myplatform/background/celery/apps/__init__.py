@@ -1,0 +1,1 @@
+# MyPlatform Celery App Configurations

@@ -1,0 +1,20 @@
+"use client";
+
+import { AdminPageTitle } from "@/components/admin/Title";
+import { SettingsForm } from "@/app/admin/settings/SettingsForm";
+import Text from "@/components/ui/text";
+import SvgSettings from "@/icons/settings";
+
+export default function Page() {
+  return (
+    <div className="mx-auto container">
+      <AdminPageTitle title="Workspace Settings" icon={SvgSettings} />
+
+      <Text className="mb-8">
+        Manage general ESA settings applicable to all users in the workspace.
+      </Text>
+
+      <SettingsForm />
+    </div>
+  );
+}

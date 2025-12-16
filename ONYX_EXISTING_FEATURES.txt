@@ -1,0 +1,267 @@
+================================================================================
+              ONYX PLATFORM - EXISTING FEATURES (AS-IS)
+================================================================================
+OVERVIEW
+================================================================================
+
+ESA is an open-source Enterprise AI Knowledge Platform that enables natural 
+language search and chat over company documents with cited answers.
+
+================================================================================
+SECTION 1: FREE OPEN-SOURCE FEATURES (MIT License)
+================================================================================
+Source: backend/esa/
+
+1.1 AI-POWERED SEARCH & CHAT
+-----------------------------
+   - Natural language questions
+   - Multi-turn conversations with context
+   - Cited answers with source references
+   - Streaming real-time responses
+   - Chat sessions and history
+   - Feedback (like/dislike) on answers
+
+1.2 DATA CONNECTORS (48 Sources)
+---------------------------------
+Source: backend/esa/configs/constants.py (DocumentSource enum)
+
+   COLLABORATION & COMMUNICATION:
+   1.  slack
+   2.  teams (Microsoft Teams)
+   3.  discord
+   4.  zulip
+
+   FILE STORAGE & CLOUD:
+   5.  google_drive
+   6.  sharepoint
+   7.  dropbox
+   8.  egnyte
+   9.  s3 (AWS S3)
+   10. r2 (Cloudflare R2)
+   11. google_cloud_storage
+   12. oci_storage (Oracle Cloud)
+   13. file (local file upload)
+
+   CODE & DEVELOPMENT:
+   14. github
+   15. gitlab
+   16. bitbucket
+
+   PROJECT MANAGEMENT:
+   17. jira
+   18. linear
+   19. asana
+   20. clickup
+   21. productboard
+
+   KNOWLEDGE BASES & DOCUMENTATION:
+   22. confluence
+   23. notion
+   24. guru
+   25. slab
+   26. bookstack
+   27. gitbook
+   28. document360
+   29. outline
+   30. mediawiki
+   31. wikipedia
+
+   CRM & SALES:
+   32. salesforce
+   33. hubspot
+   34. gong
+   35. highspot
+   36. loopio
+
+   SUPPORT & TICKETING:
+   37. zendesk
+   38. freshdesk
+   39. requesttracker
+
+   EMAIL:
+   40. gmail
+   41. imap (any email server)
+
+   FORUMS & COMMUNITIES:
+   42. discourse
+   43. xenforo
+   44. axero
+
+   OTHER:
+   45. airtable
+   46. fireflies (meeting transcripts)
+   47. testrail
+   48. google_sites
+   49. web (web scraper)
+   50. ingestion_api (custom API ingestion)
+
+1.3 LLM PROVIDERS
+-----------------
+   - OpenAI (GPT-4, GPT-4o, GPT-3.5)
+   - Anthropic (Claude 3.5, Claude 3)
+   - Google (Gemini)
+   - AWS Bedrock
+   - Azure OpenAI
+   - Cohere
+   - Ollama (self-hosted)
+   - vLLM, LiteLLM
+
+1.4 PERSONAS (ASSISTANTS)
+-------------------------
+   - Create custom AI personas
+   - System prompt customization
+   - Tool/capability configuration
+   - Document set assignment
+   - Public/private personas
+
+1.5 DOCUMENT SETS
+-----------------
+   - Group documents into collections
+   - Assign document sets to personas
+   - Filter search by document sets
+
+1.6 USER MANAGEMENT (Basic)
+---------------------------
+Source: backend/esa/configs/constants.py (AuthType enum)
+
+   - Basic email/password authentication
+   - Google OAuth
+   - OIDC (OpenID Connect)
+   - Invite-only mode
+   - Anonymous access option
+
+1.7 ADMIN FEATURES
+------------------
+   - Connector management
+   - LLM provider configuration
+   - Embedding model selection
+   - User management
+   - System settings
+   - Indexing status monitoring
+
+1.8 DEPLOYMENT
+--------------
+   - Docker/Docker Compose
+   - Kubernetes support
+   - Self-hosted deployment
+   - GPU acceleration support
+
+
+================================================================================
+SECTION 2: ENTERPRISE EDITION FEATURES (Requires License)
+================================================================================
+Source: backend/ee/esa/
+
+2.1 USER GROUPS & RBAC
+----------------------
+Source: backend/ee/esa/db/user_group.py
+Source: backend/ee/esa/server/user_group/
+
+   - User group management
+   - Role-based access control
+   - Admin, Curator, User roles
+   - Group-based permissions
+
+2.2 ANALYTICS
+-------------
+Source: backend/ee/esa/db/analytics.py
+Source: backend/ee/esa/server/analytics/
+
+   - Usage analytics dashboard
+   - Query volume tracking
+   - User activity metrics
+
+2.3 QUERY HISTORY
+-----------------
+Source: backend/ee/esa/db/query_history.py
+Source: backend/ee/esa/server/query_history/
+
+   - Full query history logging
+   - Search and filter queries
+   - Export capabilities
+
+2.4 TOKEN RATE LIMITS
+---------------------
+Source: backend/ee/esa/db/token_limit.py
+Source: backend/ee/esa/server/token_rate_limits/
+
+   - Per-user token limits
+   - Per-group token limits
+   - Global rate limits
+   - Scope: USER, USER_GROUP, GLOBAL
+
+2.5 STANDARD ANSWERS
+--------------------
+Source: backend/ee/esa/db/standard_answer.py
+
+   - Pre-defined answers for common questions
+   - Keyword matching
+   - Regex pattern matching
+   - Categories
+
+2.6 DOCUMENT PERMISSIONS
+------------------------
+Source: backend/ee/esa/db/document.py
+Source: backend/ee/esa/db/document_set.py
+Source: backend/ee/esa/db/persona.py
+
+   - Document-level access control
+   - Document set permissions
+   - Persona permissions
+
+2.7 EXTERNAL PERMISSIONS SYNC
+-----------------------------
+Source: backend/ee/esa/db/external_perm.py
+Source: backend/ee/esa/external_permissions/
+
+   - Sync permissions from source systems
+   - External user mapping
+
+2.8 MULTI-TENANCY
+-----------------
+Source: backend/ee/esa/server/tenants/
+
+   - Tenant isolation
+   - Per-tenant configuration
+
+2.9 SAML SSO
+------------
+Source: backend/ee/esa/db/saml.py
+
+   - SAML 2.0 authentication
+   - Enterprise SSO support
+
+2.10 EVALUATIONS (Evals)
+------------------------
+Source: backend/ee/esa/server/evals/
+
+   - Answer quality evaluation
+   - Test datasets
+
+2.11 USAGE EXPORT & REPORTING
+-----------------------------
+Source: backend/ee/esa/db/usage_export.py
+Source: backend/ee/esa/server/reporting/
+
+   - Export usage data
+   - Generate reports
+
+
+================================================================================
+SECTION 3: NOT AVAILABLE IN ONYX (Would Need Custom Development)
+================================================================================
+
+   - ServiceNow connector
+   - Workday connector
+   - SAP connector
+   - Box connector
+   - OneDrive (standalone) connector
+   - Database connectors (PostgreSQL, MySQL, MongoDB)
+   - Intercom connector
+   - PII detection/redaction
+   - Content filtering
+   - Approval workflows
+   - Custom branding/white-labeling
+
+
+
